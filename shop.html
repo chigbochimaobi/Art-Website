@@ -361,11 +361,22 @@ body {
 </div>
 
 <!-- HERO -->
-<section class="" style="background:#152988; height: 550px;">
+<section class="" style="background:#152988; height: 600px;">
 <img src="htmll.jpg" class="shop-hero" style="opacity: 0.3;display: block;margin: 0 auto; 
-object-position:70%;object-fit:cover; height: 550px;"/>
-<h2 class="explore" style="position: absolute; top: 42%;">Explore Artworks  for Sale <span>&#128722;</span></h2> 
+object-position:70%;object-fit:cover; height: 600px;"/>
+<h2 class="explore">Explore Artworks  for Sale <span>&#128722;</span></h2> 
 </section>
+
+	<style>
+		.explore {
+			postions:absolute;
+			top: 20%;
+		}
+
+		@media (max-width:768px){
+			top: 42%;
+		}
+	</style>
 
 
 <!-- CATEGORY SELECTOR -->
@@ -607,11 +618,11 @@ object-position:70%;object-fit:cover; height: 550px;"/>
 
   <!-- BOTTOM -->
   <div class="footer-bottom">
-    <span>© <span id="footerYear"></span> Obiorah &Eacute;goAmaka. All rights reserved.</span>
+    <span>Â© <span id="footerYear"></span> Obiorah &Eacute;goAmaka. All rights reserved.</span>
   </div>
   <div>
     <center>
-    <span style="font-size: 9px;">© <span id="footerYear"></span> Created by Chigbo Chimaobi.</span>
+    <span style="font-size: 9px;">Â© <span id="footerYear"></span> Created by Chigbo Chimaobi.</span>
   	</center>
   </div>
 </footer>
@@ -748,3 +759,4 @@ closeBtn.onclick = overlay.onclick = () => {
 </script>
 
 </html>
+
