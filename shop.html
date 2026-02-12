@@ -161,11 +161,17 @@ body {
 .explore {
 	color: white; font-size: 80px;
 	padding-left: 110px;
-	padding-top: 40px;
+	padding-top:;
+	postions:absolute;
+			top: 5%;
 }
+
+		
 /* MOBILE */
 @media(max-width:768px){
 	.explore {
+	position: absolute;
+	top: 42%;
 	color: white; font-size: 40px;
 	padding: 40px;
 }
@@ -367,20 +373,11 @@ object-position:70%;object-fit:cover; height: 600px;"/>
 <h2 class="explore">Explore Artworks  for Sale <span>&#128722;</span></h2> 
 </section>
 
-	<style>
-		.explore {
-			postions:absolute;
-			top: 20%;
-		}
-
-		@media (max-width:768px){
-			top: 42%;
-		}
-	</style>
+	
 
 
 <!-- CATEGORY SELECTOR -->
-<section class="category-filter" style="position: absolute; top: 65%;">
+<section class="category-filter">
   <div class="filter-container" style="background:white; border-radius: 0;">
     <label for="art-category" style="color: grey;">Select Category:</label>
     <select id="art-category" style="border-radius: 0; border-color: black;">
@@ -400,6 +397,8 @@ object-position:70%;object-fit:cover; height: 600px;"/>
   display: flex;
   justify-content: center;
   margin: 30px 0;
+	position: absolute;
+	top: 20%;
 }
 
 .filter-container {
@@ -759,4 +758,5 @@ closeBtn.onclick = overlay.onclick = () => {
 </script>
 
 </html>
+
 
