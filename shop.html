@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<title>Shop - Obiorah &Eacute;goamakat</title>
+<style>
+* {
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+body {
+  background: white;
+  overflow-x: hidden;
+}
+
+/* ========== HEADER NAV ========== */
+.navbar{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:70px;
+  padding:0 6%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  z-index:1000;
+  background:#000;
+  transition:background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.navbar.scrolled{
+  background:#f3ede4;
+  box-shadow:0 2px 10px rgba(0,0,0,0.06);
+}
+
+.logo{
+  font-size:1.1rem;
+  font-weight:600;
+  color:#fff;
+  text-decoration:none;
+}
+
+.nav-links{
+  display:flex;
+  gap:30px;
+}
+
+.nav-links a{
+  text-decoration:none;
+  font-size:0.95rem;
+  color:#fff;
+}
+
+.nav-links a:hover{
+  color:grey;
+}
+
+.menu-btn{
+  display:none;
+  font-size:1.6rem;
+  cursor:pointer;
+  color:#1e1a17;
+  overflow: hidden;
+}
+
+/* ================= HERO ================= */
+
+
+/* ================= MOBILE MENU ================= */
+.mobile-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.35);
+  z-index:999;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity 0.3s ease;
+}
+
+.mobile-overlay.show{
+  opacity:1;
+  pointer-events:auto;
+}
+
+.mobile-nav{
+  position:fixed;
+  top:0;
+  left:-1500px;
+  width:90%;
+  height:100%;
+  background:#000001;
+  padding:24px;
+  display:flex;
+  flex-direction:column;
+  gap:22px;
+  z-index:1000;
+  transition:left 0.50s ease;
+  font-size: 40px;
+  
+}
+
+.mobile-nav.show{
+  left:0;
+}
+
+.mobile-nav .close-btn{
+  align-self:flex-end;
+  font-size:1.4rem;
+  cursor:pointer;
+  color:white;
+  margin-bottom:10px;
+}
+
+.mobile-nav a{
+  text-decoration:none;
+  font-size:1rem;
+  color:white
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width:768px){
+	
+	.mobile-nav a{
+  text-decoration:none;
+  font-size:20px;
+  color:white;
+  text-align: center;
+}
+
+
+  .nav-links{
+    display:none;
+  }
+
+  .menu-btn{
+    display:block;
+  }
+
+ 
+}
+
+
+
+@keyframes slideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+.nav-cart {display: none;}
+
+.explore {
+	color: white; font-size: 80px;
+	padding-left: 110px;
+	padding-top: 40px;
+}
+/* MOBILE */
+@media(max-width:768px){
+	.explore {
+	color: white; font-size: 40px;
+	padding: 40px;
+}
+	.navbar{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100px;
+  padding:0 6%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  z-index:1000;
+  background:#000;
+  transition:background 0.3s ease, box-shadow 0.3s ease;
+}
+	.nav-cart {
+		display: inline-flex;
+		font-size:1.3rem;
+		margin-left:px;
+		color: white;}
+	
+  
+}
+
+/* ========== HERO ========== */
+.shop-hero {
+  width: 100%;
+  height: 50vh;
+  background:white;
+    display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.shop-hero h1 {
+  color: #fff;
+  font-size: clamp(2rem,5vw,3rem);
+  background: rgba(0,0,0,0.4);
+  padding: 12px 24px;
+  border-radius: 8px;
+}
+
+/* ========== SHOP GRID ========== */
+.shop-section {
+  max-width: 1200px;
+  margin: 80px auto 50px auto;
+  padding: 0 6%;
+}
+
+.art-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.art-card {
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transform: translateY(40px);
+  opacity: 0;
+  transition: all 0.6s ease;
+}
+
+.art-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.art-content {
+  padding: 12px;
+}
+
+.art-title {
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 6px;
+  color: #1e1a17;
+}
+
+.art-price {
+  font-weight: bold;
+  color: #7a2e2a;
+  margin-bottom: 10px;
+}
+
+.art-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.art-actions button {
+  flex: 1;
+  padding: 8px 0;
+  border: 1.5px solid grey;
+  background: #fff;
+  color: black;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: 0.3s ease;
+}
+
+.art-actions button:hover {
+  background: black;
+  color: #fff;
+}
+
+.add-cart {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #fff;
+  border-radius: 50%;
+  padding: 6px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.add-cart:hover {
+  background: #7a2e2a;
+  color: #fff;
+}
+
+/* ========== PAGINATION ========== */
+.pagination {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.pagination button {
+  padding: 10px 20px;
+  border: 1.5px solid black;
+  background: #fff;
+  color: black;
+  cursor: pointer;
+  transition: 0.3s ease;
+  border-radius: 0;
+}
+
+.pagination button:hover {
+  background: black;
+  color: #fff;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 992px){
+  .art-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px){
+  .art-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <a href="#" class="logo">Obiorah &Eacute;goamaka</a>
+ <a href="shop.html" class="nav-cart"><i style=" position: absolute; right:15%; 
+  top: 38%;font-size: 20px;"><b>&#128722;</b></i></a>
+   <a href="#" class="nav-cart"><i class="fa-solid fa-search" style=" position: absolute; right:25%; top: 45%;font-size: 20px;"></i></a>
+  <div class="menu-btn" id="menuBtn" style="color: white;">&Xi;</div>
+ 
+  
+  
+
+  <div class="nav-links">
+   <a href="index.html">Home</a>
+    <a href="#">Works</a>
+    <a href="shop.html">Shop</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+  </div>
+</nav>
+
+<div class="mobile-overlay" id="overlay"></div>
+
+<div class="mobile-nav" id="mobileNav">
+  <div class="close-btn" id="closeBtn">X</div>
+   <a href="index.html">Home</a>
+  <a href="#">Works</a>
+  <a href="shop.html">Shop</a>
+  <a href="#">About</a>
+  <a href="#">Contact</a>
+</div>
+
+<!-- HERO -->
+<section class="" style="background:#152988; height: 550px;">
+<img src="htmll.jpg" class="shop-hero" style="opacity: 0.3;display: block;margin: 0 auto; 
+object-position:70%;object-fit:cover; height: 550px;"/>
+<h2 class="explore" style="position: absolute; top: 42%;">Explore Artworks  for Sale <span>&#128722;</span></h2> 
+</section>
+
+
+<!-- CATEGORY SELECTOR -->
+<section class="category-filter" style="position: absolute; top: 65%;">
+  <div class="filter-container" style="background:white; border-radius: 0;">
+    <label for="art-category" style="color: grey;">Select Category:</label>
+    <select id="art-category" style="border-radius: 0; border-color: black;">
+      <option value=""> Choose a category </option>
+      <option value="charcoal">Charcoal Studies</option>
+      <option value="mixed">Mixed Media</option>
+      <option value="figurative">Figurative Paintings</option>
+      <option value="abstract">Abstract Forms</option>
+      <option value="limited">Limited Editions</option>
+    </select>
+  </div>
+</section>
+
+<style>
+.category-filter {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 30px 0;
+}
+
+.filter-container {
+  width: 80%;
+  max-width: 700px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #fff;
+  padding: 12px 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+.filter-container label {
+  font-weight: 500;
+  color: #1e1a17;
+  min-width: 130px;
+}
+
+.filter-container select {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1.5px solid #7a2e2a;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: border 0.3s ease;
+}
+
+.filter-container select:hover,
+.filter-container select:focus {
+  border-color: #1e1a17;
+  outline: none;
+}
+</style>
+
+
+<!-- SHOP GRID -->
+<section class="shop-section" style="background: white;">
+  <div class="art-grid">
+
+    <!-- ART CARD 1 -->
+    <div class="art-card">
+      <img src="p1.jpg" alt="Artwork 1">
+      <div class="add-cart"></div>
+      <div class="art-content">
+        <div class="art-title">Figure Study I</div>
+        <div class="art-price">$250</div>
+        <div class="art-actions">
+         <button>View Details</button>
+          <button>Add to Cart&#128722;</button>
+          <button>whatsapp</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ART CARD 2 -->
+    <div class="art-card">
+      <img src="coverimage.jpeg" alt="Artwork 2">
+      <div class="add-cart">&#128722;</div>
+      <div class="art-content">
+        <div class="art-title">Figure Study II</div>
+        <div class="art-price">$300</div>
+        <div class="art-actions">
+           <button>View Details</button>
+          <button>Add to Cart&#128722;</button>
+          <button>whatsapp</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ART CARD 3 -->
+    <div class="art-card">
+      <img src="exb2.jpeg" alt="Artwork 3">
+      <div class="add-cart">&#128722;</div>
+      <div class="art-content">
+        <div class="art-title">Charcoal Form I</div>
+        <div class="art-price">$180</div>
+        <div class="art-actions">
+           <button>View Details</button>
+          <button>Add to Cart&#128722;</button>
+          <button>whatsapp</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Repeat 6 more artworks similarly -->
+    <div class="art-card">
+      <img src="p4.jpg" alt="Artwork 4">
+      <div class="add-cart">&#128722;</div>
+      <div class="art-content">
+        <div class="art-title">Charcoal Form II</div>
+        <div class="art-price">$220</div>
+        <div class="art-actions">
+           <button>View Details</button>
+          <button>Add to Cart&#128722;</button>
+          <button>whatsapp</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="art-card">
+      <img src="art.jpg" alt="Artwork 5">
+      <div class="add-cart">&#128722;</div>
+      <div class="art-content">
+        <div class="art-title">Mixed Media I</div>
+        <div class="art-price">$350</div>
+        <div class="art-actions">
+           <button>View Details</button>
+          <button>Add to Cart&#128722;</button>
+          <button>whatsapp</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="art-card">
+      <img src="coverimg.jpeg" alt="Artwork 6">
+      <div class="add-cart">&#128722;</div>
+      <div class="art-content">
+        <div class="art-title">Mixed Media II</div>
+        <div class="art-price">$400</div>
+        <div class="art-actions">
+          <button>View Details</button>
+          <button>Add to Cart&#128722;</button>
+          <button>whatsapp</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="art-card">
+      <img src="charcoal.jpg" alt="Artwork 7">
+      <div class="add-cart">&#128722;</div>
+      <div class="art-content">
+        <div class="art-title">Figure Abstract I</div>
+        <div class="art-price">$275</div>
+        <div class="art-actions">
+          <button>View Details</button>
+          <button>Add to Cart&#128722;</button>
+          <button>whatsapp</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="art-card">
+      <img src="exb3.jpeg" alt="Artwork 8">
+      <div class="add-cart">&#128722;</div>
+      <div class="art-content">
+        <div class="art-title">Figure Abstract II</div>
+        <div class="art-price">$320</div>
+        <div class="art-actions">
+           <button>View Details</button>
+          <button>Add to Cart&#128722;</button>
+          <button>whatsapp</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="art-card">
+      <img src="p2.jpg" alt="Artwork 9">
+      <div class="add-cart">&#128722;</div>
+      <div class="art-content">
+        <div class="art-title">Charcoal Sketch</div>
+        <div class="art-price">$200</div>
+        <div class="art-actions">
+           <button>View Details</button>
+          <button>Add to Cart&#128722;</button>
+          <button>whatsapp</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- PAGINATION -->
+  <div class="pagination">
+    <button>Next Page ?</button>
+  </div>
+</section>
+
+<!-- ================= SITE FOOTER ================= -->
+<footer class="site-footer-wrap" style="background: black;">
+  <div class="site-footer-inner">
+
+    <!-- LEFT -->
+    <div class="footer-brand">
+      <h4>Obiorah &Eacute;goamaka</h4>
+      <p>
+        Charcoal and painting focused on the human form, gesture, and quiet presence.
+      </p>
+    </div>
+
+    <!-- CENTER -->
+    <div class="footer-links">
+      <h5>Navigate</h5>
+      <a href="#">Works</a>
+      <a href="#">Exhibitions</a>
+      <a href="#">Shop</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="footer-contact">
+      <h5>Contact</h5>
+      <a href="mailto:studio@johnadeyemi.com">studio@obiorahegoamaka.com</a>
+
+      <div class="footer-socials">
+        <a href="#" aria-label="Instagram">Instagram</a>
+        <a href="#" aria-label="X">X</a>
+        <a href="#" aria-label="Behance">Behance</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- BOTTOM -->
+  <div class="footer-bottom">
+    <span>© <span id="footerYear"></span> Obiorah &Eacute;goAmaka. All rights reserved.</span>
+  </div>
+  <div>
+    <center>
+    <span style="font-size: 9px;">© <span id="footerYear"></span> Created by Chigbo Chimaobi.</span>
+  	</center>
+  </div>
+</footer>
+
+<style>
+/* ====== FOOTER BASE ====== */
+.site-footer-wrap{
+  background:#1e1a17;
+  color:#d4cbbf;
+  padding:80px 6% 30px;
+}
+
+.site-footer-inner{
+  display:grid;
+  grid-template-columns:1.2fr 1fr 1fr;
+  gap:60px;
+  margin-bottom:50px;
+}
+
+/* ====== BRAND ====== */
+.footer-brand h4{
+  font-size:1.3rem;
+  color:#f6f1e9;
+  margin-bottom:14px;
+}
+
+.footer-brand p{
+  font-size:0.95rem;
+  line-height:1.6;
+  max-width:360px;
+}
+
+/* ====== LINKS ====== */
+.footer-links h5,
+.footer-contact h5{
+  font-size:0.85rem;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:#f6f1e9;
+  margin-bottom:18px;
+}
+
+.footer-links a,
+.footer-contact a{
+  display:block;
+  text-decoration:none;
+  font-size:0.95rem;
+  color:#d4cbbf;
+  margin-bottom:12px;
+  transition:color 0.25s ease;
+}
+
+.footer-links a:hover,
+.footer-contact a:hover{
+  color:#f6f1e9;
+}
+
+/* ====== SOCIALS ====== */
+.footer-socials{
+  margin-top:18px;
+  display:flex;
+  gap:18px;
+}
+
+.footer-socials a{
+  font-size:0.9rem;
+  letter-spacing:0.05em;
+}
+
+/* ====== BOTTOM ====== */
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,0.08);
+  padding-top:18px;
+  font-size:0.8rem;
+  text-align:center;
+  color:#a89f94;
+}
+
+/* ====== MOBILE ====== */
+@media(max-width:768px){
+  .site-footer-inner{
+    grid-template-columns:1fr;
+    gap:40px;
+  }
+
+  .site-footer-wrap{
+    padding:70px 5% 25px;
+  }
+}
+</style>
+
+<script>
+document.getElementById("footerYear").textContent = new Date().getFullYear();
+</script>
+
+
+<!-- ========== ANIMATION SCRIPT ========== -->
+<script>
+const artCards = document.querySelectorAll('.art-card');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.style.transform = 'translateY(0)';
+      entry.target.style.opacity = '1';
+      observer.unobserve(entry.target);
+    }
+  });
+}, {threshold:0.1});
+
+artCards.forEach(card => observer.observe(card));
+</script>
+
+</body>
+
+<script>
+const navbar = document.getElementById("navbar");
+const menuBtn = document.getElementById("menuBtn");
+const mobileNav = document.getElementById("mobileNav");
+const overlay = document.getElementById("overlay");
+const closeBtn = document.getElementById("closeBtn");
+
+
+
+menuBtn.onclick = () => {
+  mobileNav.classList.add("show");
+  overlay.classList.add("show");
+};
+
+closeBtn.onclick = overlay.onclick = () => {
+  mobileNav.classList.remove("show");
+  overlay.classList.remove("show");
+};
+</script>
+
+</html>
