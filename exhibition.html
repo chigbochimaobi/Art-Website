@@ -26,10 +26,24 @@ body{
   position:relative;
   width:100%;
   height:100vh;
-  background:url("event0.jpg") center/cover no-repeat;
   display:flex;
   align-items:center;
   justify-content:center;
+}
+
+	.hero-bg{
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(
+      rgba(0,0,0,0.6),
+      rgba(0,0,0,0.6)
+    ),
+    url("event0.jpg"); /* replace */
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  z-index:1;
 }
 
 .exhibit-overlay{
@@ -390,6 +404,7 @@ body{
 
 <!-- HERO -->
 <section class="exhibit-hero" style="background:#000b66;">
+	<div class="hero-bg"></div>
   <div class="exhibit-overlay"></div>
   <div class="exhibit-hero-content">
  
@@ -647,4 +662,5 @@ reveals.forEach(el => observer.observe(el));
 
 </body>
 </html>
+
 
