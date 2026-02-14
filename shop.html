@@ -206,7 +206,7 @@ body {
   background-position:center;
   background-repeat:no-repeat;
   z-index:1;
-	margin-top: -100px;
+	margin-top: -20%;
   ;
 }
 
@@ -316,20 +316,7 @@ body {
   color: #fff;
 }
 
-/* ========== RESPONSIVE ========== */
-@media (max-width: 992px){
-  .art-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 600px){
-  .art-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-.hero-content{
+	.hero-content{
   position:relative;
   z-index:2;
   text-align:center;
@@ -351,7 +338,7 @@ body {
 .hero-content p{
   font-size:14px;
   opacity:0.85;
-  margin-bottom:26px;
+	padding: 20px;
 }
 
 
@@ -378,6 +365,21 @@ body {
     transform: translateY(0);
   }
 }
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 992px){
+  .art-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px){
+  .art-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
 </style>
 </head>
 <body>
@@ -415,8 +417,7 @@ body {
 <!-- HERO -->
 <section class="hero-wrap">
 <div class="hero-bg"></div>
-
- <div class="hero-content">
+<div class="hero-content">
     <h1>Explore Original Artworks  for Sale</h1>
     <p>Each drawings and paintings (reviewed and released directly by the artist) are available to collectors. </p>
   
@@ -445,7 +446,7 @@ body {
   width: 100%;
   display: flex;
   justify-content: center;
-  margin: 30px 0;
+  margin: 30px ;
 }
 
 .filter-container {
@@ -485,11 +486,10 @@ body {
 
 @media(max-width:768px) {
 	.category-filter {
-  width: 60%;
+  width: 80%;
   display: flex;
   justify-content: center;
-  margin: 30px 0;
-	margin-left: 20%;
+  margin-left: 10%;
 }
 	
 }
@@ -831,6 +831,7 @@ closeBtn.onclick = overlay.onclick = () => {
 </script>
 
 </html>
+
 
 
 
